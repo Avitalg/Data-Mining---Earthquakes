@@ -1,1 +1,1 @@
-# Data-Mining---Earthquakes
+# Data-Mining-Earthquakes
