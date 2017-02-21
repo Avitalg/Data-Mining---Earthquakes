@@ -43,10 +43,10 @@ train<-shuffled[1:round(0.7*n),]
 test<-shuffled[(round(0.7*n)+1):n,]
 
 #feature scaling - normalization 
-#train[,2:6] = scale(train[,2:6])
-#test[,2:6] = scale(test[,2:6])
+train[,2:6] = scale(train[,2:6])
+test[,2:6] = scale(test[,2:6])
 
-regressor = lm(formula = longitude ~ latitude, data = train)
+regressor = lm(formula = depth ~ mag, data = train)
 
 #predict the test set results
 y_pred = predict ( regressor, newdata = test)
@@ -54,7 +54,7 @@ y_pred = predict ( regressor, newdata = test)
 
 #visualising the training set results
 ggplot() +
-  geom_point(aes(x = train$longitude, y=train$latitude), colour="red") +
-  geom_line(aes(x=train$longitude, y=predict(regressor, newdata = train)),colour="blue") +
-  ggtitle('longitude vs latitude')
+  geom_point(aes(x = train$depth, y=train$mag), colour="red") +
+  geom_line(aes(x=train$depth, y=predict(regressor, newdata = train)),colour="blue") +
+  ggtitle('depth vs mag (training set)')
 
